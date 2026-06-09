@@ -1,0 +1,90 @@
+/*
+ * themes.css — Design tokens using the CSS light-dark() function
+ *
+ * ---------------------------------------------------------------
+ * WHAT THIS FILE DOES
+ * ---------------------------------------------------------------
+ * All color values are declared once using light-dark(lightValue, darkValue).
+ * The browser automatically picks the right value based on the active
+ * color scheme — no media queries needed here.
+ *
+ * The active color scheme is controlled by two things:
+ *   1. `color-scheme: light dark` on :root — follows the OS preference by default
+ *   2. `data-theme` on <html> — lets the toggle button override the OS preference
+ *
+ * ---------------------------------------------------------------
+ * TRY IT
+ * ---------------------------------------------------------------
+ * Change any color value below and save. Vite's HMR will update
+ * the browser instantly — no refresh needed.
+ *
+ * Ideas to experiment with:
+ *   - Swap the accent color to a warm tone: light-dark(#cc6600, #ffaa55)
+ *   - Make the nav a different color from the page background
+ *   - Try a high-contrast pair: light-dark(#000000, #ffffff)
+ *
+ * ---------------------------------------------------------------
+ * HOW light-dark() WORKS
+ * ---------------------------------------------------------------
+ * Syntax: light-dark( <light-value>, <dark-value> )
+ *
+ * The function requires `color-scheme` to include both "light" and
+ * "dark" somewhere in scope (usually on :root). Once set, the
+ * browser resolves light-dark() at computed-value time — meaning
+ * it reacts to the scheme change without re-parsing the stylesheet.
+ *
+ * Spec: https://drafts.csswg.org/css-color-5/#light-dark
+ * MDN:  https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark
+ * ---------------------------------------------------------------
+ */
+
+:root {
+  /*
+   * Declare both schemes so light-dark() is active.
+   * Remove "dark" here to lock the page to light mode permanently,
+   * or remove "light" to lock to dark mode.
+   */
+  color-scheme: light dark;
+
+  /* --- Surfaces ------------------------------------------------ */
+  --surface-primary:   light-dark(#f5f5f5, #1a1a1a);
+  --surface-secondary: light-dark(#e8e8e8, #2a2a2a);
+  --surface-nav:       light-dark(#ffffff,  #111111);
+  --surface-card:      light-dark(#ffffff,  #242424);
+
+  /* --- Text ---------------------------------------------------- */
+  --text-primary:   light-dark(#111111, #f0f0f0);
+  --text-secondary: light-dark(#555555, #aaaaaa);
+  --text-nav:       light-dark(#222222, #e0e0e0);
+
+  /* --- Accent -------------------------------------------------- */
+  /* Change these to try a different brand color */
+  --accent:        light-dark(#0066cc, #66aaff);
+  --accent-hover:  light-dark(#004ea8, #88c0ff);
+
+  /* --- Borders & dividers -------------------------------------- */
+  --border:        light-dark(#dddddd, #333333);
+  --border-focus:  light-dark(#0066cc, #66aaff);
+
+  /* --- Interactive states -------------------------------------- */
+  --nav-link-hover-bg: light-dark(#f0f0f0, #222222);
+  --button-bg:         light-dark(#f0f0f0, #2a2a2a);
+  --button-bg-hover:   light-dark(#e0e0e0, #3a3a3a);
+  --button-text:       light-dark(#222222, #e0e0e0);
+}
+
+/*
+ * Force light theme — overrides the OS preference.
+ * Set by the theme toggle button via data-theme="light" on <html>.
+ */
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/*
+ * Force dark theme — overrides the OS preference.
+ * Set by the theme toggle button via data-theme="dark" on <html>.
+ */
+[data-theme="dark"] {
+  color-scheme: dark;
+}
