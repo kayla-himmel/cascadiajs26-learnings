@@ -18,7 +18,7 @@
   margin-top: 0.75rem;
   font-size: 1.125rem;     /* 18px */
   color: var(--text-secondary);
-  max-width: 60ch;
+  max-width: 720px;
 }
 
 /* ===============================================================
@@ -157,7 +157,6 @@
 .callout__body {
   font-size: 1rem;
   color: var(--text-secondary);
-  max-width: 65ch;
 }
 
 .callout__body code {
@@ -245,7 +244,7 @@
   font-size: 1rem;
   color: var(--text-secondary);
   padding-top: 0.25rem;
-  max-width: 60ch;
+  max-width: 720px;
 }
 
 .step-list__text code {
@@ -305,7 +304,6 @@
 .tool-card__description {
   font-size: 1rem;
   color: var(--text-secondary);
-  max-width: 55ch;
 }
 
 .tool-card__link {
@@ -326,7 +324,6 @@
   font-size: 1rem;
   color: var(--text-secondary);
   font-style: italic;
-  max-width: 55ch;
 }
 
 /* ===============================================================
@@ -393,5 +390,4 @@
 .nav-card__desc {
   font-size: 0.9375rem;
   color: var(--text-secondary);
-  max-width: 45ch;
 }
