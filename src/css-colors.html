@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSS Color Functions — CascadiaJS '26</title>
+    <!-- Restore saved theme before first paint to prevent flash -->
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        if (t) document.documentElement.dataset.theme = t;
+      })();
+    </script>
     <link rel="stylesheet" href="/src/css/themes.css" />
     <link rel="stylesheet" href="/src/css/global.css" />
   </head>
@@ -11,6 +18,7 @@
     <nav class="site-nav" aria-label="Site navigation">
       <a href="/" class="site-nav__brand">CascadiaJS '26 Learnings</a>
       <ul class="site-nav__links" role="list">
+        <li><a href="/">Home</a></li>
         <li><a href="/src/css-colors.html" aria-current="page">CSS Colors</a></li>
         <li><a href="/src/docs-linking.html">Docs Linking</a></li>
         <li><a href="/src/tools.html">Tools</a></li>

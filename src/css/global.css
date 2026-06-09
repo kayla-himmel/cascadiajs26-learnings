@@ -32,7 +32,11 @@
 html {
   /* 16px base — meets minimum accessible font size */
   font-size: 16px;
-  /* Smooth transitions when the color scheme switches */
+}
+
+/* Gate transitions on a class added after DOMContentLoaded to prevent
+   background-color animating from light→dark on initial load */
+html.theme-transitions-ready {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -140,11 +144,16 @@ a:focus-visible {
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.site-nav__links a:hover,
+.site-nav__links a:hover {
+  background-color: var(--nav-link-hover-bg);
+  color: var(--accent);
+}
+
 .site-nav__links a:focus-visible {
   background-color: var(--nav-link-hover-bg);
   color: var(--accent);
-  outline: none;
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
 }
 
 /* Highlight the current page link */

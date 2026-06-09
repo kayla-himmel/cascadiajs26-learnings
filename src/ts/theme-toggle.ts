@@ -48,6 +48,10 @@ applyTheme(saved);
 // ---------------------------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Enable theme transitions only after initial load to prevent
+  // background-color animating from light→dark on page load
+  document.documentElement.classList.add('theme-transitions-ready');
+
   const button = document.getElementById('theme-toggle');
 
   if (!button) {
