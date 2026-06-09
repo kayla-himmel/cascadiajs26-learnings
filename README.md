@@ -15,7 +15,7 @@ This repo is a hands-on playground for JavaScript and TypeScript developers who 
 ## Getting started
 
 ```bash
-git clone <repo-url>   # replace with the actual URL once the repo is public
+git clone https://github.com/kayla-himmel/cascadiajs26-learnings.git
 cd cascadiajs26-learnings
 npm install
 npm run dev
