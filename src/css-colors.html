@@ -4,8 +4,257 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSS Color Functions — CascadiaJS '26</title>
+    <!-- Restore saved theme before first paint to prevent flash -->
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <link rel="stylesheet" href="/src/css/themes.css" />
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/css-colors.css" />
   </head>
   <body>
-    <p>Coming soon.</p>
+    <nav class="site-nav" aria-label="Site navigation">
+      <a href="/" class="site-nav__brand">CascadiaJS '26 Learnings</a>
+      <ul class="site-nav__links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/src/css-colors.html" aria-current="page">CSS Colors</a></li>
+        <li><a href="/src/docs-linking.html">Docs Linking</a></li>
+        <li><a href="/src/tools.html">Tools</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Switch to light mode">&#9728;&#xFE0E; / &#9789;&#xFE0E;</button>
+    </nav>
+
+    <main>
+      <h1>CSS Color Functions</h1>
+      <p class="page-intro">
+        Modern CSS ships powerful built-in color tools — no preprocessor required.
+        These demos show four functions covered at CascadiaJS 2026, with live examples
+        you can tweak directly in the source files.
+      </p>
+
+      <!-- ============================================================
+           DEMO 1: light-dark()
+           ============================================================ -->
+      <section class="demo-section" id="light-dark" aria-labelledby="heading-light-dark">
+        <h2 id="heading-light-dark"><code>light-dark()</code></h2>
+        <p class="demo-description">
+          Returns one of two color values depending on the active <code>color-scheme</code>
+          — light or dark. Define your palette once; the browser picks the right value
+          automatically. No media queries, no duplicate rules.
+        </p>
+
+        <h3>Live demo</h3>
+        <div class="demo-live light-dark-demo" aria-label="light-dark() demo">
+          <div class="demo-card" role="article">
+            <div class="demo-card__avatar" aria-hidden="true"></div>
+            <div class="demo-card__body">
+              <p class="demo-card__name">Alex Rivera</p>
+              <p class="demo-card__role">Frontend Engineer</p>
+              <p class="demo-card__bio">
+                Builds accessible UIs and loves digging into the CSS spec on weekends.
+              </p>
+            </div>
+          </div>
+          <p class="demo-callout" role="note">
+            This whole page is themed with <code>light-dark()</code>. Toggle the theme
+            in the top nav to watch it switch.
+          </p>
+        </div>
+
+        <h3>Code snippet</h3>
+        <pre class="demo-code"><code>:root {
+  color-scheme: light dark;
+  /* Try changing these color values and saving! */
+  --surface-primary: light-dark(#f5f5f5, #1a1a1a);
+  --text-primary:    light-dark(#111111, #f0f0f0);
+}
+
+/* Force a specific theme regardless of OS preference */
+[data-theme="light"] { color-scheme: light; }
+[data-theme="dark"]  { color-scheme: dark; }</code></pre>
+
+        <a
+          class="caniuse-link"
+          href="https://caniuse.com/?search=light-dark"
+          target="_blank"
+          rel="noopener noreferrer"
+        >View browser support on caniuse<span class="sr-only"> (opens in new tab)</span></a>
+      </section>
+
+      <!-- ============================================================
+           DEMO 2: color-mix()
+           ============================================================ -->
+      <section class="demo-section" id="color-mix" aria-labelledby="heading-color-mix">
+        <h2 id="heading-color-mix"><code>color-mix()</code></h2>
+        <p class="demo-description">
+          Mixes two colors in a given color space. Perfect for generating hover states,
+          tints, and shades on the fly — without a preprocessor or JavaScript.
+        </p>
+
+        <h3>Live demo</h3>
+        <div class="demo-live color-mix-demo" aria-label="color-mix() swatches">
+          <div class="swatches" role="list">
+            <div class="swatch swatch-1" role="listitem" aria-label="0% white — base color">
+              <span class="swatch-label">0% white</span>
+            </div>
+            <div class="swatch swatch-2" role="listitem" aria-label="25% white mixed in">
+              <span class="swatch-label">25% white</span>
+            </div>
+            <div class="swatch swatch-3" role="listitem" aria-label="50% white mixed in">
+              <span class="swatch-label">50% white</span>
+            </div>
+            <div class="swatch swatch-4" role="listitem" aria-label="75% white mixed in">
+              <span class="swatch-label">75% white</span>
+            </div>
+            <div class="swatch swatch-5" role="listitem" aria-label="100% white — full white">
+              <span class="swatch-label">100% white</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Code snippet</h3>
+        <pre class="demo-code"><code>.demo {
+  /* Try changing --demo-color to any color and saving! */
+  --demo-color: #0066cc;
+}
+
+.swatch { background: color-mix(in srgb, var(--demo-color) 75%, white); }
+/* Change the percentage to control how much of each color shows */</code></pre>
+
+        <a
+          class="caniuse-link"
+          href="https://caniuse.com/?search=color-mix"
+          target="_blank"
+          rel="noopener noreferrer"
+        >View browser support on caniuse<span class="sr-only"> (opens in new tab)</span></a>
+      </section>
+
+      <!-- ============================================================
+           DEMO 3: contrast-color()
+           ============================================================ -->
+      <section class="demo-section" id="contrast-color" aria-labelledby="heading-contrast-color">
+        <h2 id="heading-contrast-color"><code>contrast-color()</code></h2>
+        <p class="demo-description">
+          Automatically picks black or white — whichever has better contrast — against a
+          given background color. Eliminates manual contrast math and ensures readable
+          text on any background.
+        </p>
+
+        <div class="experimental-badge" role="note" aria-label="Experimental feature">
+          <strong>Experimental</strong> — not yet widely supported. See the caniuse link below.
+        </div>
+
+        <h3>Live demo</h3>
+        <div class="demo-live contrast-color-demo" aria-label="contrast-color() button grid">
+          <div class="contrast-btn-grid">
+            <button class="demo-btn demo-btn--1" style="--btn-color: #ff6b6b">
+              #ff6b6b
+            </button>
+            <button class="demo-btn demo-btn--2" style="--btn-color: #ffd93d">
+              #ffd93d
+            </button>
+            <button class="demo-btn demo-btn--3" style="--btn-color: #6bcb77">
+              #6bcb77
+            </button>
+            <button class="demo-btn demo-btn--4" style="--btn-color: #4d96ff">
+              #4d96ff
+            </button>
+            <button class="demo-btn demo-btn--5" style="--btn-color: #c77dff">
+              #c77dff
+            </button>
+            <button class="demo-btn demo-btn--6" style="--btn-color: #0a0a0a">
+              #0a0a0a
+            </button>
+          </div>
+          <p class="demo-note" role="note">
+            Note: <code>contrast-color()</code> is experimental. If text is not showing
+            above, your browser may not support it yet. Check caniuse for support status.
+          </p>
+        </div>
+
+        <h3>Code snippet</h3>
+        <pre class="demo-code"><code>.button {
+  /* Try changing this color — the text will always stay readable */
+  background: var(--btn-color);
+  color: contrast-color(var(--btn-color));
+}</code></pre>
+
+        <a
+          class="caniuse-link"
+          href="https://caniuse.com/?search=contrast-color"
+          target="_blank"
+          rel="noopener noreferrer"
+        >View browser support on caniuse<span class="sr-only"> (opens in new tab)</span></a>
+      </section>
+
+      <!-- ============================================================
+           DEMO 4: Modern CSS Color Notation
+           ============================================================ -->
+      <section class="demo-section" id="modern-color-notation" aria-labelledby="heading-modern-color-notation">
+        <h2 id="heading-modern-color-notation">Modern CSS Color Notation</h2>
+        <p class="demo-description">
+          Modern CSS drops the commas between color channels and uses a
+          <code>/</code> separator before the alpha value. This is CSS Color Level 4
+          syntax — cleaner, more consistent, and now widely supported.
+        </p>
+
+        <h3>Live demo</h3>
+        <div class="demo-live relative-color-demo" aria-label="Old vs new color syntax comparison">
+          <div class="syntax-comparison">
+            <div class="syntax-block" aria-label="Old comma syntax">
+              <p class="syntax-label">Before — comma syntax</p>
+              <div class="syntax-row">
+                <div class="syntax-swatch" style="background: rgba(225, 65, 65, 0.9)" aria-hidden="true"></div>
+                <code>rgba(225, 65, 65, 0.9)</code>
+              </div>
+              <div class="syntax-row">
+                <div class="syntax-swatch" style="background: hsla(215, 80%, 60%, 0.9)" aria-hidden="true"></div>
+                <code>hsla(215, 80%, 60%, 0.9)</code>
+              </div>
+            </div>
+            <div class="syntax-block" aria-label="New space-separated syntax">
+              <p class="syntax-label">After — space-separated syntax</p>
+              <div class="syntax-row">
+                <div class="syntax-swatch" style="background: rgb(225 65 65 / 0.9)" aria-hidden="true"></div>
+                <code>rgb(225 65 65 / 0.9)</code>
+              </div>
+              <div class="syntax-row">
+                <div class="syntax-swatch" style="background: hsl(215 80% 60% / 0.9)" aria-hidden="true"></div>
+                <code>hsl(215 80% 60% / 0.9)</code>
+              </div>
+            </div>
+          </div>
+          <p class="demo-note" role="note">
+            The swatches are identical — same rendered color, different syntax.
+            Spot the difference: commas between channels vs. spaces, and
+            <code>/</code> before the alpha value.
+          </p>
+        </div>
+
+        <h3>Code snippet</h3>
+        <pre class="demo-code"><code>/* Before — old syntax uses rgba()/hsla() for colors with alpha */
+.old { color: rgba(225, 65, 65, 0.9); }
+.old { color: hsla(215, 80%, 60%, 0.9); }
+
+/* After — new space-separated syntax (same result) */
+.new { color: rgb(225 65 65 / 0.9); }
+.new { color: hsl(215 80% 60% / 0.9); }</code></pre>
+
+        <a
+          class="caniuse-link"
+          href="https://caniuse.com/?search=space+separated"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Browser support for modern color notation (caniuse.com)<span class="sr-only"> (opens in new tab)</span></a>
+      </section>
+    </main>
+
+    <script type="module" src="/src/ts/theme-toggle.ts"></script>
   </body>
 </html>

@@ -3,9 +3,236 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Docs Linking — CascadiaJS '26</title>
+    <title>Better Documentation Linking — CascadiaJS '26</title>
+    <!-- Restore saved theme before first paint to prevent flash -->
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <link rel="stylesheet" href="/src/css/themes.css" />
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/pages.css" />
   </head>
   <body>
-    <p>Coming soon.</p>
+    <nav class="site-nav" aria-label="Site navigation">
+      <a href="/" class="site-nav__brand">CascadiaJS '26 Learnings</a>
+      <ul class="site-nav__links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/src/css-colors.html">CSS Colors</a></li>
+        <li><a href="/src/docs-linking.html" aria-current="page">Docs Linking</a></li>
+        <li><a href="/src/tools.html">Tools</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Switch to light mode">&#9728;&#xFE0E; / &#9789;&#xFE0E;</button>
+    </nav>
+
+    <main>
+      <div class="page-header">
+        <h1>Better Documentation Linking</h1>
+        <p class="page-header__subtitle">
+          TSDoc's built-in tags let you link between functions in VS Code hover tooltips.
+          The custom <code>@ref</code> convention takes it a step further by making those
+          links machine-verifiable — so broken references get caught in CI before they mislead anyone.
+        </p>
+      </div>
+
+      <!-- ============================================================
+           Section 1 — What TSDoc gives you natively
+           ============================================================ -->
+      <section class="page-section" aria-labelledby="tsdoc-native">
+        <h2 class="page-section__heading" id="tsdoc-native">What TSDoc gives you natively</h2>
+        <p class="page-section__intro">
+          TypeScript's JSDoc support includes two tags for cross-referencing symbols:
+        </p>
+        <ul style="margin: 0.75rem 0 0.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li style="color: var(--text-secondary);">
+            <strong style="color: var(--text-primary);"><code>{@link}</code></strong> —
+            renders as a clickable go-to-definition link inside VS Code hover tooltips.
+            Ctrl/Cmd-click jumps straight to the target.
+          </li>
+          <li style="color: var(--text-secondary);">
+            <strong style="color: var(--text-primary);"><code>@see</code></strong> —
+            adds a "See also" section in the JSDoc comment block.
+            Useful for grouping related functions or pointing to docs.
+          </li>
+        </ul>
+        <p class="page-section__intro">
+          Neither tag validates that the linked target actually exists. Rename a function
+          or move a file and the link silently becomes stale.
+        </p>
+        <div class="code-block">
+          <pre><code>/**
+ * Applies the color scheme.
+ * @see {@link getColorScheme} for reading the current scheme
+ */
+export function applyColorScheme(scheme: ColorScheme): void { ... }</code></pre>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Section 2 — The @ref convention
+           ============================================================ -->
+      <section class="page-section" aria-labelledby="ref-convention">
+        <h2 class="page-section__heading" id="ref-convention">The @ref convention</h2>
+        <p class="page-section__intro">
+          <code>@ref</code> is a custom inline annotation — not a TSDoc standard — used in this
+          repo to declare which <em>documentation files</em> a source file depends on.
+          Unlike <code>{@link}</code>, these can be validated automatically.
+        </p>
+        <div class="code-block">
+          <pre><code>// @ref docs/light-dark.md#usage [describes] — light-dark() theme tokens
+// @ref docs/better-docs-linking.md#ref-convention [meta] — explains this annotation format</code></pre>
+        </div>
+        <p class="page-section__intro">Each <code>@ref</code> line has four parts:</p>
+        <ul class="ref-anatomy" role="list">
+          <li class="ref-anatomy__item">
+            <span class="ref-anatomy__term">path</span>
+            <span class="ref-anatomy__desc">File path relative to the repo root — e.g. <code>docs/light-dark.md</code></span>
+          </li>
+          <li class="ref-anatomy__item">
+            <span class="ref-anatomy__term">#anchor</span>
+            <span class="ref-anatomy__desc">Optional. Must match an <code>##</code> heading in the target file exactly.</span>
+          </li>
+          <li class="ref-anatomy__item">
+            <span class="ref-anatomy__term">[relationship]</span>
+            <span class="ref-anatomy__desc">A human-readable label: <code>[describes]</code>, <code>[meta]</code>, <code>[implements]</code>, etc.</span>
+          </li>
+          <li class="ref-anatomy__item">
+            <span class="ref-anatomy__term">— note</span>
+            <span class="ref-anatomy__desc">Optional freeform comment explaining the connection. Ignored by the validator.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================================================
+           Section 3 — See it in action: example.ts
+           ============================================================ -->
+      <section class="page-section" aria-labelledby="example-ts">
+        <h2 class="page-section__heading" id="example-ts">See it in action: example.ts</h2>
+        <p class="page-section__intro">
+          Below are the key annotated sections from <code>src/ts/example.ts</code>.
+          The file-level <code>@ref</code> comments at the top declare which docs this
+          module relates to. The JSDoc blocks show <code>@see</code> and <code>{@link}</code>
+          working together on individual functions.
+        </p>
+        <div class="code-block" aria-label="Annotated example.ts — file-level @ref comments and function JSDoc">
+          <pre><code>// @ref docs/better-docs-linking.md#ref-convention [meta] — this file uses the @ref convention
+// @ref docs/light-dark.md#how-it-works [describes] — this module manages the light-dark() color scheme
+
+/**
+ * The color scheme the user has selected or that the system is using.
+ *
+ * @see {@link applyColorScheme} to set this value programmatically
+ * @see {@link getColorScheme} to read the current value
+ */
+export type ColorScheme = 'light' | 'dark' | 'system';
+
+// @ref docs/light-dark.md#usage [describes] — this function drives the light-dark() switch
+/**
+ * Sets the active color scheme by writing `data-theme` onto the `&lt;html&gt;` element.
+ *
+ * @param scheme — The {@link ColorScheme} to apply.
+ *
+ * @see {@link getColorScheme} to read the current scheme before toggling
+ *
+ * @example
+ * ```ts
+ * applyColorScheme('dark');   // forces dark mode
+ * applyColorScheme('system'); // reverts to OS preference
+ * ```
+ */
+export function applyColorScheme(scheme: ColorScheme): void { ... }</code></pre>
+        </div>
+        <div class="callout">
+          <p class="callout__title">Try it in VS Code</p>
+          <p class="callout__body">
+            Open <code>src/ts/example.ts</code> and hover over a function name to see
+            the <code>@see</code> link rendered in the tooltip. Ctrl/Cmd-click
+            a <code>{@link}</code> reference to jump straight to the target symbol.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Section 4 — Validating with check-refs.mjs
+           ============================================================ -->
+      <section class="page-section" aria-labelledby="check-refs">
+        <h2 class="page-section__heading" id="check-refs">Validating with check-refs.mjs</h2>
+        <p class="page-section__intro">
+          <code>check-refs.mjs</code> scans every <code>.ts</code> file under <code>src/ts/</code>,
+          extracts each <code>@ref</code> annotation, and verifies that:
+        </p>
+        <ul style="margin: 0.75rem 0 0.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.375rem;">
+          <li style="color: var(--text-secondary);">The referenced file exists in the repo</li>
+          <li style="color: var(--text-secondary);">If an <code>#anchor</code> is specified, the matching <code>##</code> heading exists in that file</li>
+        </ul>
+        <p class="page-section__intro">Run it with:</p>
+        <div class="code-block">
+          <pre><code>npm run check:refs</code></pre>
+        </div>
+        <p class="page-section__intro">Example output (all passing):</p>
+        <div class="code-block" aria-label="Example check:refs output">
+          <pre><code>Checking @ref annotations in src/ts/...
+
+src/ts/example.ts:15         @ref docs/better-docs-linking.md#ref-convention ✅
+src/ts/example.ts:16         @ref docs/light-dark.md#how-it-works            ✅
+src/ts/example.ts:63         @ref docs/light-dark.md#usage                   ✅
+src/ts/example.ts:90         @ref docs/color-mix.md#usage                    ✅
+src/ts/example.ts:116        @ref docs/contrast-color.md#overview            ✅
+
+5 refs checked, 0 failed. All good!</code></pre>
+        </div>
+        <p class="page-section__intro">
+          The script exits with code <code>0</code> when all refs pass and code <code>1</code>
+          when any fail — so a broken reference stops the CI build.
+        </p>
+        <div class="callout callout--break-it">
+          <p class="callout__title">Break it on purpose</p>
+          <p class="callout__body">
+            Open <code>src/ts/example.ts</code> and change one <code>@ref</code> path to
+            <code>docs/nonexistent.md</code>, then run <code>npm run check:refs</code>.
+            The failing ref will be flagged with a clear reason and the script will exit 1.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Section 5 — Automated with GitHub Actions
+           ============================================================ -->
+      <section class="page-section" aria-labelledby="github-actions">
+        <h2 class="page-section__heading" id="github-actions">Automated with GitHub Actions</h2>
+        <p class="page-section__intro">
+          The <code>.github/workflows/refs.yml</code> workflow runs
+          <code>check-refs.mjs</code> on every push and pull request.
+          No manual step needed — the CI job catches broken refs before they merge.
+        </p>
+        <div class="code-block" aria-label="refs.yml GitHub Actions workflow">
+          <pre><code>name: Check @ref annotations
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  check-refs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate @ref annotations
+        run: node check-refs.mjs</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/ts/theme-toggle.ts"></script>
   </body>
 </html>

@@ -4,10 +4,105 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cascadiajs26-learnings</title>
+    <title>CascadiaJS '26 Learnings</title>
+    <!-- Restore saved theme before first paint to prevent flash -->
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <link rel="stylesheet" href="/src/css/themes.css" />
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/pages.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <nav class="site-nav" aria-label="Site navigation">
+      <a href="/" class="site-nav__brand">CascadiaJS '26 Learnings</a>
+      <ul class="site-nav__links" role="list">
+        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="/src/css-colors.html">CSS Colors</a></li>
+        <li><a href="/src/docs-linking.html">Docs Linking</a></li>
+        <li><a href="/src/tools.html">Tools</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Switch to light mode">&#9728;&#xFE0E; / &#9789;&#xFE0E;</button>
+    </nav>
+
+    <main>
+      <!-- Hero -->
+      <div class="page-header">
+        <h1>CascadiaJS '26 Learnings</h1>
+        <p class="page-header__subtitle">
+          A hands-on playground for CSS color functions and TypeScript documentation
+          techniques from CascadiaJS 2026.
+        </p>
+        <div class="cta-links">
+          <a class="cta-link cta-link--primary" href="/src/css-colors.html">Browse the demos &rarr;</a>
+          <a class="cta-link cta-link--secondary" href="#" rel="noopener noreferrer">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- How to use this repo -->
+      <section class="page-section" aria-labelledby="how-to-use">
+        <h2 class="page-section__heading" id="how-to-use">How to use this repo</h2>
+        <ol class="step-list" role="list">
+          <li class="step-list__item">
+            <span class="step-list__text">
+              Clone the repo and run <code>npm install &amp;&amp; npm run dev</code>
+            </span>
+          </li>
+          <li class="step-list__item">
+            <span class="step-list__text">
+              Open a file in VS Code — each one has inline comments guiding what to change
+            </span>
+          </li>
+          <li class="step-list__item">
+            <span class="step-list__text">
+              Save the file — Vite's HMR updates the browser instantly
+            </span>
+          </li>
+          <li class="step-list__item">
+            <span class="step-list__text">
+              Run <code>npm run check:refs</code> to validate the documentation linking examples
+            </span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Nav cards -->
+      <section class="page-section" aria-labelledby="explore">
+        <h2 class="page-section__heading" id="explore">Explore the playground</h2>
+        <nav class="nav-card-grid" aria-label="Playground sections">
+          <a class="nav-card" href="/src/css-colors.html">
+            <span class="nav-card__icon" aria-hidden="true">&#127752;</span>
+            <span class="nav-card__title">CSS Color Functions</span>
+            <span class="nav-card__desc">
+              light-dark(), color-mix(), contrast-color(), and modern color notation
+            </span>
+          </a>
+          <a class="nav-card" href="/src/docs-linking.html">
+            <span class="nav-card__icon" aria-hidden="true">&#128216;</span>
+            <span class="nav-card__title">Docs Linking</span>
+            <span class="nav-card__desc">
+              TSDoc @link, @see, and the @ref validation convention
+            </span>
+          </a>
+          <a class="nav-card" href="/src/tools.html">
+            <span class="nav-card__icon" aria-hidden="true">&#128295;</span>
+            <span class="nav-card__title">Tools</span>
+            <span class="nav-card__desc">
+              VideoJS, Wasp, and Kiro — tools worth knowing about
+            </span>
+          </a>
+        </nav>
+      </section>
+    </main>
+
+    <script type="module" src="/src/ts/theme-toggle.ts"></script>
   </body>
 </html>

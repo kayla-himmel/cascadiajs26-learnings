@@ -1,0 +1,393 @@
+/*
+ * pages.css — Shared styles for docs-linking.html, tools.html, and index.html
+ *
+ * All colors reference CSS custom properties from themes.css.
+ * ---------------------------------------------------------------
+ */
+
+/* ===============================================================
+   PAGE HEADER
+   Hero / intro section at the top of a page.
+   =============================================================== */
+
+.page-header {
+  margin-bottom: 3rem;
+}
+
+.page-header__subtitle {
+  margin-top: 0.75rem;
+  font-size: 1.125rem;     /* 18px */
+  color: var(--text-secondary);
+  max-width: 720px;
+}
+
+/* ===============================================================
+   CTA LINKS
+   Call-to-action link buttons on the landing page hero.
+   =============================================================== */
+
+.cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.cta-link {
+  display: inline-block;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.cta-link--primary {
+  color: #ffffff;
+  background-color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.cta-link--primary:hover,
+.cta-link--primary:focus-visible {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #ffffff;
+}
+
+.cta-link--secondary {
+  color: var(--accent);
+  background-color: transparent;
+  border: 2px solid var(--accent);
+}
+
+.cta-link--secondary:hover,
+.cta-link--secondary:focus-visible {
+  background-color: var(--nav-link-hover-bg);
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.cta-link:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+/* ===============================================================
+   PAGE SECTIONS
+   =============================================================== */
+
+.page-section {
+  margin-bottom: 3rem;
+}
+
+.page-section__heading {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-section__intro {
+  margin-bottom: 1rem;
+}
+
+/* ===============================================================
+   CODE BLOCKS
+   Used on docs-linking page for showing annotated examples.
+   =============================================================== */
+
+.code-block {
+  background-color: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-size: 0.875rem;  /* 14px — code is exempt from 16px min; context makes it readable */
+  line-height: 1.6;
+  color: var(--text-primary);
+  white-space: pre;
+}
+
+.code-block code {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ===============================================================
+   CALLOUT BOX
+   Highlighted tips and "try it" prompts.
+   =============================================================== */
+
+.callout {
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  border-left: 4px solid var(--accent);
+  background-color: var(--surface-secondary);
+  margin: 1rem 0;
+}
+
+.callout--break-it {
+  border-left-color: #cc6600;
+}
+
+[data-theme="dark"] .callout--break-it {
+  border-left-color: #ffaa55;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .callout--break-it {
+    border-left-color: #ffaa55;
+  }
+}
+
+.callout__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.375rem;
+}
+
+.callout__body {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.callout__body code {
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-size: 0.875rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+  color: var(--text-primary);
+}
+
+/* ===============================================================
+   @REF ANATOMY LIST
+   Explains each part of the @ref annotation format.
+   =============================================================== */
+
+.ref-anatomy {
+  list-style: none;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ref-anatomy__item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  font-size: 1rem;
+}
+
+.ref-anatomy__term {
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+  min-width: 9rem;
+}
+
+.ref-anatomy__desc {
+  color: var(--text-secondary);
+}
+
+/* ===============================================================
+   STEP LIST
+   Numbered how-to steps on the landing page.
+   =============================================================== */
+
+.step-list {
+  list-style: none;
+  counter-reset: step-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.step-list__item {
+  counter-increment: step-counter;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.step-list__item::before {
+  content: counter(step-counter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+.step-list__text {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  padding-top: 0.25rem;
+  max-width: 720px;
+}
+
+.step-list__text code {
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-size: 0.875rem;
+  background-color: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+  color: var(--text-primary);
+}
+
+/* ===============================================================
+   TOOL CARDS
+   Grid of cards, one per tool on the Tools page.
+   =============================================================== */
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.tool-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tool-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .tool-card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tool-card:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.tool-card__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.tool-card__description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.tool-card__link {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.tool-card__context-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.tool-card__context {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ===============================================================
+   NAV CARDS
+   Three-card grid linking to page sections on the landing page.
+   =============================================================== */
+
+.nav-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.nav-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nav-card:hover,
+.nav-card:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  color: inherit;
+}
+
+[data-theme="dark"] .nav-card:hover,
+[data-theme="dark"] .nav-card:focus-visible {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .nav-card:hover,
+  :root:not([data-theme="light"]) .nav-card:focus-visible {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.nav-card:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.nav-card__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  /* Prevent emoji from inheriting color changes */
+  display: block;
+}
+
+.nav-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.nav-card__desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}

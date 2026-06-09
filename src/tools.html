@@ -3,9 +3,112 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tools — CascadiaJS '26</title>
+    <title>Tools Worth Knowing — CascadiaJS '26</title>
+    <!-- Restore saved theme before first paint to prevent flash -->
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+    <link rel="stylesheet" href="/src/css/themes.css" />
+    <link rel="stylesheet" href="/src/css/global.css" />
+    <link rel="stylesheet" href="/src/css/pages.css" />
   </head>
   <body>
-    <p>Coming soon.</p>
+    <nav class="site-nav" aria-label="Site navigation">
+      <a href="/" class="site-nav__brand">CascadiaJS '26 Learnings</a>
+      <ul class="site-nav__links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/src/css-colors.html">CSS Colors</a></li>
+        <li><a href="/src/docs-linking.html">Docs Linking</a></li>
+        <li><a href="/src/tools.html" aria-current="page">Tools</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Switch to light mode">&#9728;&#xFE0E; / &#9789;&#xFE0E;</button>
+    </nav>
+
+    <main>
+      <div class="page-header">
+        <h1>Tools Worth Knowing</h1>
+        <p class="page-header__subtitle">
+          A few tools that came up at CascadiaJS 2026 — worth keeping in your back pocket.
+        </p>
+      </div>
+
+      <div class="tool-grid">
+
+        <!-- VideoJS -->
+        <article class="tool-card" aria-labelledby="tool-videojs">
+          <h2 class="tool-card__name" id="tool-videojs">VideoJS</h2>
+          <p class="tool-card__description">
+            The newly open-sourced, rewritten video player from Mux — framework-agnostic
+            and production-ready.
+          </p>
+          <a
+            class="tool-card__link"
+            href="https://videojs.org/docs/framework/react/concepts/why-videojs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            VideoJS docs<span class="sr-only"> (opens in new tab)</span>
+          </a>
+          <p class="tool-card__context-label">From the talk</p>
+          <p class="tool-card__context">
+            Mentioned as a drop-in replacement for Mux's old player. Now open source
+            and re-architected from the ground up.
+          </p>
+        </article>
+
+        <!-- Wasp -->
+        <article class="tool-card" aria-labelledby="tool-wasp">
+          <h2 class="tool-card__name" id="tool-wasp">Wasp</h2>
+          <p class="tool-card__description">
+            A full-stack web framework for React + Node.js that lets you declare your
+            app structure in a simple config language.
+          </p>
+          <a
+            class="tool-card__link"
+            href="https://github.com/wasp-lang/wasp#what-is-wasp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Wasp on GitHub<span class="sr-only"> (opens in new tab)</span>
+          </a>
+          <p class="tool-card__context-label">From the talk</p>
+          <p class="tool-card__context">
+            Briefly mentioned as a batteries-included alternative to assembling your
+            own React/Node stack.
+          </p>
+        </article>
+
+        <!-- Kiro -->
+        <article class="tool-card" aria-labelledby="tool-kiro">
+          <h2 class="tool-card__name" id="tool-kiro">Kiro</h2>
+          <p class="tool-card__description">
+            Amazon's AI-assisted coding tool — similar to Claude Code but built with
+            AWS integrations in mind.
+          </p>
+          <a
+            class="tool-card__link"
+            href="https://kiro.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            kiro.dev<span class="sr-only"> (opens in new tab)</span>
+          </a>
+          <p class="tool-card__context-label">From the talk</p>
+          <p class="tool-card__context">
+            Used in a couple of lightning talks and demos at the conference. Doesn't
+            require AWS, but shines on AWS projects.
+          </p>
+        </article>
+
+      </div>
+    </main>
+
+    <script type="module" src="/src/ts/theme-toggle.ts"></script>
   </body>
 </html>
