@@ -191,15 +191,14 @@
       </section>
 
       <!-- ============================================================
-           DEMO 4: CSS Relative Color Syntax
+           DEMO 4: Modern CSS Color Notation
            ============================================================ -->
-      <section class="demo-section" id="relative-color" aria-labelledby="heading-relative-color">
-        <h2 id="heading-relative-color">CSS Relative Color Syntax</h2>
+      <section class="demo-section" id="modern-color-notation" aria-labelledby="heading-modern-color-notation">
+        <h2 id="heading-modern-color-notation">Modern CSS Color Notation</h2>
         <p class="demo-description">
           Modern CSS drops the commas between color channels and uses a
-          <code>/</code> separator for alpha instead of a fourth comma argument.
-          The result is cleaner, more readable color values — and it works today in
-          all modern browsers.
+          <code>/</code> separator before the alpha value. This is CSS Color Level 4
+          syntax — cleaner, more consistent, and now widely supported.
         </p>
 
         <h3>Live demo</h3>
@@ -209,15 +208,15 @@
               <p class="syntax-label">Before — comma syntax</p>
               <p
                 class="syntax-example syntax-old-rgb"
-                style="color: rgb(25, 25, 25, 0.8)"
+                style="color: rgba(25, 25, 25, 0.8)"
               >
-                This text uses <code>rgb(25, 25, 25, 0.8)</code>
+                This text uses <code>rgba(25, 25, 25, 0.8)</code>
               </p>
               <p
                 class="syntax-example syntax-old-hsl"
-                style="color: hsl(220, 80%, 30%, 0.9)"
+                style="color: hsla(220, 80%, 30%, 0.9)"
               >
-                This text uses <code>hsl(220, 80%, 30%, 0.9)</code>
+                This text uses <code>hsla(220, 80%, 30%, 0.9)</code>
               </p>
             </div>
             <div class="syntax-block" aria-label="New space-separated syntax">
@@ -242,9 +241,9 @@
         </div>
 
         <h3>Code snippet</h3>
-        <pre class="demo-code"><code>/* Before — old comma syntax */
-.old { color: rgb(25, 25, 25, 0.8); }
-.old { color: hsl(120, 50%, 50%, 0.4); }
+        <pre class="demo-code"><code>/* Before — old syntax uses rgba()/hsla() for colors with alpha */
+.old { color: rgba(25, 25, 25, 0.8); }
+.old { color: hsla(120, 50%, 50%, 0.4); }
 
 /* After — new space-separated syntax (same result) */
 .new { color: rgb(25 25 25 / 0.8); }
@@ -252,10 +251,10 @@
 
         <a
           class="caniuse-link"
-          href="https://caniuse.com/?search=css+relative+color+syntax"
+          href="https://caniuse.com/mdn-css_types_color_space_separated_functional_notation"
           target="_blank"
           rel="noopener noreferrer"
-        >View browser support on caniuse<span class="sr-only"> (opens in new tab)</span></a>
+        >Browser support for modern color notation (caniuse.com)<span class="sr-only"> (opens in new tab)</span></a>
       </section>
     </main>
 

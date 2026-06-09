@@ -9,8 +9,12 @@
  *   1. light-dark()
  *   2. color-mix()
  *   3. contrast-color()
- *   4. CSS Relative Color Syntax
+ *   4. Modern CSS Color Notation
  */
+
+:root {
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
 
 /* ===============================================================
    PAGE INTRO
@@ -44,7 +48,7 @@
 
 .demo-section h2 code {
   font-size: inherit;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: var(--font-mono);
   background: none;
   padding: 0;
 }
@@ -60,7 +64,7 @@
 }
 
 .demo-description code {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.9em;
   background-color: var(--surface-secondary);
   padding: 0.1em 0.35em;
@@ -88,7 +92,7 @@
 }
 
 .demo-code code {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: var(--font-mono);
   color: var(--text-primary);
   background: none;
   padding: 0;
@@ -130,7 +134,7 @@
 }
 
 .demo-note code {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.9em;
   background-color: var(--surface-primary);
   padding: 0.1em 0.35em;
@@ -200,7 +204,7 @@
 }
 
 .demo-callout code {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.9em;
   background-color: var(--surface-primary);
   padding: 0.1em 0.35em;
@@ -215,29 +219,6 @@
 .color-mix-demo {
   /* The demo color used in the swatch rules below */
   --demo-color: #0066cc;
-}
-
-.swatches {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.swatch {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 8px;
-  overflow: visible;
-}
-
-.swatch-label {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  text-align: center;
-  width: 80px;
 }
 
 .swatches {
@@ -323,7 +304,7 @@
 }
 
 /* ===============================================================
-   DEMO 4: CSS Relative Color Syntax
+   DEMO 4: Modern CSS Color Notation
    =============================================================== */
 
 .syntax-comparison {
@@ -368,7 +349,7 @@
 
 .syntax-example code {
   display: block;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.8125rem;
   background-color: var(--surface-primary);
   padding: 0.1em 0.35em;
