@@ -71,6 +71,9 @@
   --button-bg:         light-dark(#f0f0f0, #2a2a2a);
   --button-bg-hover:   light-dark(#e0e0e0, #3a3a3a);
   --button-text:       light-dark(#222222, #e0e0e0);
+
+  /* --- Typography --------------------------------------------- */
+  --font-mono: 'Cascadia Code', 'SFMono-Regular', 'Fira Code', Consolas, 'Liberation Mono', Menlo, monospace;
 }
 
 /*

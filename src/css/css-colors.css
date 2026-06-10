@@ -12,10 +12,6 @@
  *   4. Modern CSS Color Notation
  */
 
-:root {
-  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-}
-
 /* ===============================================================
    PAGE INTRO
    =============================================================== */
@@ -205,6 +201,12 @@
   padding: 0.1em 0.35em;
   border-radius: 3px;
   color: var(--text-primary);
+}
+
+.swatch-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
 }
 
 /* ===============================================================
