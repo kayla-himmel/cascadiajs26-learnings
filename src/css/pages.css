@@ -108,7 +108,7 @@
 .code-block pre {
   margin: 0;
   padding: 1.25rem 1.5rem;
-  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-family: var(--font-mono);
   font-size: 0.875rem;  /* 14px — code is exempt from 16px min; context makes it readable */
   line-height: 1.6;
   color: var(--text-primary);
@@ -134,17 +134,7 @@
 }
 
 .callout--break-it {
-  border-left-color: #cc6600;
-}
-
-[data-theme="dark"] .callout--break-it {
-  border-left-color: #ffaa55;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .callout--break-it {
-    border-left-color: #ffaa55;
-  }
+  border-left-color: light-dark(#cc6600, #ffaa55);
 }
 
 .callout__title {
@@ -160,7 +150,7 @@
 }
 
 .callout__body code {
-  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   background-color: var(--surface-card);
   border: 1px solid var(--border);
@@ -190,7 +180,7 @@
 }
 
 .ref-anatomy__term {
-  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   font-weight: 700;
   color: var(--accent);
@@ -248,7 +238,7 @@
 }
 
 .step-list__text code {
-  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   background-color: var(--surface-secondary);
   border: 1px solid var(--border);
@@ -282,17 +272,7 @@
 
 .tool-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="dark"] .tool-card:hover {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .tool-card:hover {
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  }
+  box-shadow: 0 2px 12px light-dark(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.3));
 }
 
 .tool-card__name {
@@ -353,20 +333,8 @@
 .nav-card:hover,
 .nav-card:focus-visible {
   border-color: var(--accent);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 10px light-dark(rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.3));
   color: inherit;
-}
-
-[data-theme="dark"] .nav-card:hover,
-[data-theme="dark"] .nav-card:focus-visible {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .nav-card:hover,
-  :root:not([data-theme="light"]) .nav-card:focus-visible {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  }
 }
 
 .nav-card:focus-visible {

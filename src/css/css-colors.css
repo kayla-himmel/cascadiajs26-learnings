@@ -12,10 +12,6 @@
  *   4. Modern CSS Color Notation
  */
 
-:root {
-  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-}
-
 /* ===============================================================
    PAGE INTRO
    =============================================================== */
@@ -156,14 +152,26 @@
   max-width: 400px;
 }
 
-.demo-card__avatar {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  /* Uses the accent variable — itself a light-dark() value */
-  background-color: var(--accent);
+.demo-card--cjs {
+  background-color: light-dark(#17c37b, #112378);
+  border-color: light-dark(#13a868, #0c1a5e);
+  color: light-dark(#112378, #17c37b);
+}
+
+.demo-card--cjs .demo-card__name,
+.demo-card--cjs .demo-card__role,
+.demo-card--cjs .demo-card__bio {
+  color: inherit;
+}
+
+.demo-card--cjs .demo-card__role {
   opacity: 0.8;
+}
+
+.cjs-card-logo {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
 }
 
 .demo-card__body {
@@ -205,6 +213,12 @@
   padding: 0.1em 0.35em;
   border-radius: 3px;
   color: var(--text-primary);
+}
+
+.swatch-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
 }
 
 /* ===============================================================

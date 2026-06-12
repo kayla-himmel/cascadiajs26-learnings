@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>CSS Color Functions — CascadiaJS '26</title>
     <!-- Restore saved theme before first paint to prevent flash -->
     <script>
@@ -51,13 +52,19 @@
 
         <h3>Live demo</h3>
         <div class="demo-live light-dark-demo" aria-label="light-dark() demo">
-          <div class="demo-card" role="article">
-            <div class="demo-card__avatar" aria-hidden="true"></div>
+          <div class="demo-card demo-card--cjs" role="article">
+            <svg class="cjs-card-logo" viewBox="0 0 330 368" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M0,.32V367.68H329.19V.32H0ZM316.75,355.24H170.27v-126.93l26.99,26.99,8.17-8.17-40.84-40.84-40.84,40.84,8.17,8.17,26.8-26.8v126.74H12.44V12.76H316.75V355.24Z" fill="currentColor"/>
+              <polygon points="164.59 91.94 197.26 124.61 205.43 116.45 164.59 75.61 123.75 116.45 131.92 124.61 164.59 91.94" fill="currentColor"/>
+              <polygon points="164.59 124.61 221.77 181.79 229.94 173.62 164.59 108.28 99.25 173.62 107.42 181.79 164.59 124.61" fill="currentColor"/>
+              <polygon points="164.59 157.29 246.27 238.96 254.44 230.8 164.59 140.95 74.75 230.8 82.91 238.96 164.59 157.29" fill="currentColor"/>
+              <polygon points="99.25 238.96 107.42 247.13 164.59 189.96 221.77 247.13 229.94 238.96 164.59 173.62 99.25 238.96" fill="currentColor"/>
+            </svg>
             <div class="demo-card__body">
-              <p class="demo-card__name">Alex Rivera</p>
-              <p class="demo-card__role">Frontend Engineer</p>
+              <p class="demo-card__name">CascadiaJS '26</p>
+              <p class="demo-card__role">Seattle, WA</p>
               <p class="demo-card__bio">
-                Builds accessible UIs and loves digging into the CSS spec on weekends.
+                A Web + AI conference for developers in the Pacific Northwest and beyond.
               </p>
             </div>
           </div>
@@ -153,24 +160,12 @@
         <h3>Live demo</h3>
         <div class="demo-live contrast-color-demo" aria-label="contrast-color() button grid">
           <div class="contrast-btn-grid">
-            <button class="demo-btn demo-btn--1" style="--btn-color: #ff6b6b">
-              #ff6b6b
-            </button>
-            <button class="demo-btn demo-btn--2" style="--btn-color: #ffd93d">
-              #ffd93d
-            </button>
-            <button class="demo-btn demo-btn--3" style="--btn-color: #6bcb77">
-              #6bcb77
-            </button>
-            <button class="demo-btn demo-btn--4" style="--btn-color: #4d96ff">
-              #4d96ff
-            </button>
-            <button class="demo-btn demo-btn--5" style="--btn-color: #c77dff">
-              #c77dff
-            </button>
-            <button class="demo-btn demo-btn--6" style="--btn-color: #0a0a0a">
-              #0a0a0a
-            </button>
+            <button class="demo-btn" style="--btn-color: #ff6b6b">#ff6b6b</button>
+            <button class="demo-btn" style="--btn-color: #ffd93d">#ffd93d</button>
+            <button class="demo-btn" style="--btn-color: #6bcb77">#6bcb77</button>
+            <button class="demo-btn" style="--btn-color: #4d96ff">#4d96ff</button>
+            <button class="demo-btn" style="--btn-color: #c77dff">#c77dff</button>
+            <button class="demo-btn" style="--btn-color: #0a0a0a">#0a0a0a</button>
           </div>
           <p class="demo-note" role="note">
             Note: <code>contrast-color()</code> is experimental. If text is not showing
