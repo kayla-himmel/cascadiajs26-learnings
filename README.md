@@ -21,7 +21,7 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:5173 in your browser. The site has three pages linked from the home page: CSS Color Functions, Documentation Linking, and Tools.
+Then open <http://localhost:5173> in your browser. The site has three pages linked from the home page: CSS Color Functions, Documentation Linking, and Tools.
 
 ---
 
@@ -32,7 +32,7 @@ This section tells you exactly which file to edit to see each demo update live i
 ### CSS color functions
 
 | What you want to try | File to edit |
-|---|---|
+| --- | --- |
 | Change the light/dark color tokens | `src/css/themes.css` |
 | Tweak the `color-mix()` percentages | `src/css/css-colors.css` — color-mix section |
 | Change a `contrast-color()` button background | `src/css/css-colors.css` — contrast-color section |
@@ -40,7 +40,7 @@ This section tells you exactly which file to edit to see each demo update live i
 ### Documentation linking
 
 | What you want to try | File to edit |
-|---|---|
+| --- | --- |
 | Add a new `@ref` annotation | `src/ts/example.ts` |
 | Break a `@ref` path to see `check:refs` fail | `src/ts/example.ts` — change a path to `docs/nonexistent.md` |
 | Validate all `@ref` annotations | Run `npm run check:refs` in your terminal |
@@ -49,7 +49,7 @@ This section tells you exactly which file to edit to see each demo update live i
 
 ## Available scripts
 
-```
+```bash
 npm run dev          # Start Vite dev server with HMR at http://localhost:5173
 npm run build        # Type-check and produce a production build in dist/
 npm run check:refs   # Validate every @ref annotation in src/ts/ against docs/
@@ -59,7 +59,7 @@ npm run check:refs   # Validate every @ref annotation in src/ts/ against docs/
 
 ## Project structure
 
-```
+```bash
 src/
   css-colors.html       <- CSS color function demos
   docs-linking.html     <- documentation linking guide
@@ -80,5 +80,5 @@ check-refs.mjs          <- @ref validation script
 
 ## Talk references
 
-- CSS color functions talk: https://jdsteinbach.com/practical-color-css/
-- Linked Literate Programming (inspiration for `@ref`): https://github.com/ccheever/llp
+- CSS color functions talk: <https://jdsteinbach.com/practical-color-css/>
+- Linked Literate Programming (inspiration for `@ref`): <https://github.com/ccheever/llp>
